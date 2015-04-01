@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="ui-grid" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/../release/ui-grid.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../release/ui-grid.min.js" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../release/ui-grid.js" />
+    </SOURCES>
+  </library>
+</component>

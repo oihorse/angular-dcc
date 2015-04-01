@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="characterCreator">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>DCC Character Generator</title>
+    <link rel="styleSheet" href="css/main.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js"></script>
+    <!--<script src="/release/ui-grid.js"></script>-->
+
+</head>
+<body ng-controller="CharacterController">
+<h1>DCC Character Creator</h1>
+<div>
+<p>Occupation:
+    <select ng-model="charOccupation" ng-options="occupation as occupation.occupation for occupation in charSelection"
+            ng-change="updateClass()">
+        <option value="">Select Occupation</option>
+    </select>
+    <button ng-click="randomOccupation()" class="button">Random</button>
+</p>
+<p>Alignment:
+    <select ng-model="alignment" ng-options="alignment as alignment.name for alignment in alignmentSelection"
+            ng-change="generateCharTitle()">
+        <option value="">Select Alignment</option>
+    </select>
+</p>
+<p>Class:
+    <select ng-model="charClass" ng-options="charClass as charClass.name for charClass in classSelection"
+            ng-disabled="occupationCheck" ng-change="classChosen()">
+        <option value="" >Select Class</option>
+    </select>
+</p>
+<p>Level:
+    <select ng-model="charLevel" ng-change="generateLevelChanges()">
+        <option value="">Select Level</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+</p>
+<p>
+    Name: <input ng-model="charName" type="text" placeholder="Character Name">
+    Title: <input ng-model="charTitle" type="text" placeholder="Title" ng-readonly=true>
+    Speed: {{ charClass.speed }}
+    Hit Points: {{ hitPoints }}
+</p>
+
+<p> Crit Table: {{ critTable }} <br>
+    Crit Die: {{ critDie }} <br>
+    Attack Bonus: {{ attackBonus }} <br>
+    Action Die: {{ actionDie }} <br>
+    Melee Attack Bonus: {{ meleeAttackBonus }}<br>
+    Missile Attack Bonus: {{ missileAttackBonus }}
+
+</p>
+
+<p>
+    <button ng-click="randomStats()" class="button">Generate stats</button>
+    <br>
+    Strength: <input ng-Model="charStrength.score" type="text" ng-disabled=true>
+    Modifier: <input ng-model="charStrength.modifier" type="text" ng-disabled=true><br>
+    Agility: <input ng-Model="charAgility.score" type="text" ng-disabled=true>
+    Modifier: <input ng-model="charAgility.modifier" type="text" ng-disabled=true>
+    Reflex Save: <input ng-model="reflexSave" type="text" ng-disabled=true><br>
+    Stamina: <input ng-Model="charStamina.score" type="text" ng-disabled=true>
+    Modifier: <input ng-model="charStamina.modifier" type="text" ng-disabled=true>
+    Fortitude Save: <input ng-model="fortitudeSave" type="text" ng-disabled=true><br>
+    Personality: <input ng-Model="charPersonality.score" type="text" ng-disabled=true>
+    Modifier: <input ng-model="charPersonality.modifier" type="text" ng-disabled=true>
+    Willpower Save: <input ng-model="willPowerSave" type="text" ng-disabled=true><br>
+    Luck: <input ng-Model="charLuck.score" type="text" ng-disabled=true>
+    Modifier: <input ng-model="charLuck.modifier" type="text" ng-disabled=true><br>
+    Intelligence: <input ng-Model="charIntelligence.score" type="text" ng-disabled=true>
+    Modifier: <input ng-model="charIntelligence.modifier" type="text" ng-disabled=true> <br>
+</p>
+<p>
+    Lucky Roll: {{ luckyRollResult.name }}
+</p>
+
+<p>
+    Initiative:{{ charInitiative }}
+</p>
+<p>Starting Weapon: {{ charOccupation.startingWeapon }}</p>
+<p>Starting Equipment: {{ charOccupation.equipment }}</p>
+
+
+
+
+<!-- <script type="text/javascript" src="scripts/controllers/characterController.js"></script>->
+ <!--<script type="text/javascript" src="scripts/controllers/charClassController.js"></script>-->
+</div>
+
+<div ng-switch on="charClass.name">
+    <div ng-switch-when="Warrior">
+        <div ng-include src=" 'classViews/warriorview.html' "></div>
+    </div>
+    <div ng-switch-when="Wizard">
+        <div ng-include src=" 'classViews/wizardview.html' "></div>
+    </div>
+    <div ng-switch-when="Cleric">
+        <div ng-include src=" 'classViews/clericview.html' "></div>
+    </div>
+    <div ng-switch-when="Thief">
+        <div ng-include src=" 'classViews/thiefview.html' "></div>
+    </div>
+    <div ng-switch-when="Elven">
+        <div ng-include src=" 'classViews/elfview.html' "></div>
+    </div>
+    <div ng-switch-when="Dwarven">
+        <div ng-include src=" 'classViews/dwarfview.html' "></div>
+    </div>
+    <div ng-switch-when="Halfling">
+        <div ng-include src=" 'classViews/halflingview.html' "></div>
+    </div>
+</div>
+
+<!--<div>-->
+    <!--<div ui-grid="{ data: myData }" class="myGrid"></div>-->
+<!--</div>-->
+
+
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/characterClasses/warrior.js"></script>
+<script type="text/javascript" src="scripts/characterClasses/thief.js"></script>
+
+</body>
+</html>
